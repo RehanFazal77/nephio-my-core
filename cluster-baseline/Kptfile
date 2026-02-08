@@ -35,6 +35,19 @@ info:
   - security
 pipeline:
   mutators:
+  - name: PackageVariant.baseline-my-core..0
+    image: gcr.io/kpt-fn/apply-setters:v0.2
+    configMap:
+      cluster-name: my-core
+      cluster-repo-branch: main
+      cluster-repo-url: https://github.com/rehanfazal77/nephio-my-core.git
+      cluster-type: workload
+      enable-node-labeling-job: "true"
+      enable-pod-security: "true"
+      namespace-prefix: ""
+      site-id: site-core-01
+      storage-class-name: local-path
+      workload-type: core
   - image: gcr.io/kpt-fn/apply-setters:v0.2
     configMap:
       cluster-name: my-ran
