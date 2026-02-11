@@ -32,25 +32,25 @@ pipeline:
   - image: nephio/nad-fn:latest
 status:
   conditions:
-  - type: req.nephio.org/v1alpha1.Interface.n4
-    status: "True"
-    message: update for condition
-  - type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.nad-test-n4
-    status: "True"
-    reason: req.nephio.org/v1alpha1.Interface.n4
-    message: update done
   - type: ipam.resource.nephio.org/v1alpha1.IPClaim.n4-ipv4
     status: "True"
     reason: req.nephio.org/v1alpha1.Interface.n4
     message: create resource
-  - type: req.nephio.org/v1alpha1.Interface.n6
-    status: "True"
-    message: update for condition
-  - type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.nad-test-n6
-    status: "True"
-    reason: req.nephio.org/v1alpha1.Interface.n6
-    message: update done
   - type: ipam.resource.nephio.org/v1alpha1.IPClaim.n6-ipv4
     status: "True"
     reason: req.nephio.org/v1alpha1.Interface.n6
     message: create resource
+  - type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.nad-test-n4
+    status: "True"
+    reason: req.nephio.org/v1alpha1.Interface.n4
+    message: update done
+  - type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.nad-test-n6
+    status: "True"
+    reason: req.nephio.org/v1alpha1.Interface.n6
+    message: update done
+  - type: req.nephio.org/v1alpha1.Interface.n4
+    status: "True"
+    message: update for condition
+  - type: req.nephio.org/v1alpha1.Interface.n6
+    status: "True"
+    message: update for condition
