@@ -1,0 +1,56 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata: # kpt-merge: /nad-test-core
+  name: nad-test-core
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: 'kpt.dev|Kptfile|default|nad-test-core'
+upstream:
+  type: git
+  git:
+    repo: https://github.com/RehanFazal77/nephio-blueprints-approachB.git
+    directory: networking/nad-test-core
+    ref: main
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/RehanFazal77/nephio-blueprints-approachB.git
+    directory: networking/nad-test-core
+    ref: main
+    commit: ef75b8a8061e86b0f5885bf48af56a174ab16098
+info:
+  description: |
+    Phase 1 test: Verify that nad-fn generates NADs from correct Nephio CRDs.
+    Contains pre-filled WorkloadCluster, Interface, and IPClaim resources.
+    Pipeline runs nad-fn to generate NetworkAttachmentDefinitions.
+  keywords:
+  - nad-test
+  - byoh
+  - phase1
+pipeline:
+  mutators:
+  - image: nephio/nad-fn:latest
+status:
+  conditions:
+  - type: req.nephio.org/v1alpha1.Interface.n4
+    status: "True"
+    message: update for condition
+  - type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.nad-test-n4
+    status: "True"
+    reason: req.nephio.org/v1alpha1.Interface.n4
+    message: update done
+  - type: ipam.resource.nephio.org/v1alpha1.IPClaim.n4-ipv4
+    status: "True"
+    reason: req.nephio.org/v1alpha1.Interface.n4
+    message: create resource
+  - type: req.nephio.org/v1alpha1.Interface.n6
+    status: "True"
+    message: update for condition
+  - type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.nad-test-n6
+    status: "True"
+    reason: req.nephio.org/v1alpha1.Interface.n6
+    message: update done
+  - type: ipam.resource.nephio.org/v1alpha1.IPClaim.n6-ipv4
+    status: "True"
+    reason: req.nephio.org/v1alpha1.Interface.n6
+    message: create resource
