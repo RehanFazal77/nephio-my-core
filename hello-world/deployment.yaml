@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: # kpt-merge: default/hello-world
+  name: hello-world
+  namespace: default
+  labels:
+    app: hello-world
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'apps|Deployment|default|hello-world'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world
+        image: nginxdemos/hello:latest
+        ports:
+        - containerPort: 80
+          name: http
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi

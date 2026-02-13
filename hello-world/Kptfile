@@ -1,0 +1,26 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata: # kpt-merge: /hello-world
+  name: hello-world
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: 'kpt.dev|Kptfile|default|hello-world'
+upstream:
+  type: git
+  git:
+    repo: https://github.com/RehanFazal77/nephio-blueprints-approachB.git
+    directory: hello-world
+    ref: main
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/RehanFazal77/nephio-blueprints-approachB.git
+    directory: hello-world
+    ref: main
+    commit: 3f435b3d1ba7ff14c93006752533744905f614f7
+info:
+  description: "A simple hello-world application package to verify the \nNephio application package flow on BYOH clusters.\nDeploys an nginx-based hello-world app with a Service.\n"
+  keywords:
+  - hello-world
+  - test
+  - byoh
