@@ -21,6 +21,7 @@ upstreamLock:
 info:
   description: example upf blueprint package
   readinessGates:
+  - conditionType: config.injection.WorkloadCluster.workload-cluster
   - conditionType: nephio.org.Specializer.specialize
 pipeline:
   mutators:
@@ -39,22 +40,77 @@ pipeline:
   - image: docker.io/nephio/nfdeploy-fn:v4.0.0
 status:
   conditions:
-  - message: 'spec invalid: mandatory field ClusterName is missing from WorkloadCluster'
-    reason: Failed
+  - type: config.injection.WorkloadCluster.workload-cluster
+    status: "True"
+    message: injected resource "sdcore" from cluster
+    reason: ConfigInjected
+  - message: not ready
+    reason: Specialize
     status: "False"
     type: nephio.org.Specializer.specialize
-  - message: 'spec invalid: mandatory field ClusterName is missing from WorkloadCluster'
-    status: "False"
-    type: req.nephio.org/v1alpha1.Interface.n3
-  - message: 'spec invalid: mandatory field ClusterName is missing from WorkloadCluster'
-    status: "False"
-    type: req.nephio.org/v1alpha1.Interface.n4
-  - message: 'spec invalid: mandatory field ClusterName is missing from WorkloadCluster'
-    status: "False"
-    type: req.nephio.org/v1alpha1.Interface.n6
-  - message: 'spec invalid: mandatory field ClusterName is missing from WorkloadCluster'
-    status: "False"
-    type: req.nephio.org/v1alpha1.Interface.sbi
-  - message: 'spec invalid: mandatory field ClusterName is missing from WorkloadCluster'
+  - message: create initial resource condition
     status: "False"
     type: req.nephio.org/v1alpha1.DataNetwork.internet
+    reason: workload.nephio.org/v1alpha1.NFDeployment.upf-sdcore
+  - message: create initial resource condition
+    status: "False"
+    type: req.nephio.org/v1alpha1.Interface.n3
+    reason: workload.nephio.org/v1alpha1.NFDeployment.upf-sdcore
+  - message: create initial resource condition
+    status: "False"
+    type: req.nephio.org/v1alpha1.Interface.n4
+    reason: workload.nephio.org/v1alpha1.NFDeployment.upf-sdcore
+  - message: create initial resource condition
+    status: "False"
+    type: req.nephio.org/v1alpha1.Interface.n6
+    reason: workload.nephio.org/v1alpha1.NFDeployment.upf-sdcore
+  - message: update done
+    status: "True"
+    type: req.nephio.org/v1alpha1.Interface.sbi
+  - message: update for condition
+    status: "False"
+    type: workload.nephio.org/v1alpha1.NFDeployment.upf-sdcore
+  - message: child local resource -> done
+    reason: workload.nephio.org/v1alpha1.NFDeployment.upf-sdcore
+    status: "True"
+    type: req.nephio.org/v1alpha1.Capacity.dataplane
+  - message: create initial resource
+    reason: req.nephio.org/v1alpha1.Interface.n3
+    status: "False"
+    type: ipam.resource.nephio.org/v1alpha1.IPClaim.upf-sdcore-n3-ipv4
+  - message: create initial resource
+    reason: req.nephio.org/v1alpha1.Interface.n3
+    status: "False"
+    type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.upf-sdcore-n3
+  - message: create initial resource
+    reason: req.nephio.org/v1alpha1.Interface.n3
+    status: "False"
+    type: vlan.resource.nephio.org/v1alpha1.VLANClaim.upf-sdcore-n3
+  - message: create initial resource
+    reason: req.nephio.org/v1alpha1.Interface.n4
+    status: "False"
+    type: ipam.resource.nephio.org/v1alpha1.IPClaim.upf-sdcore-n4-ipv4
+  - message: create initial resource
+    reason: req.nephio.org/v1alpha1.Interface.n4
+    status: "False"
+    type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.upf-sdcore-n4
+  - message: create initial resource
+    reason: req.nephio.org/v1alpha1.Interface.n4
+    status: "False"
+    type: vlan.resource.nephio.org/v1alpha1.VLANClaim.upf-sdcore-n4
+  - message: create initial resource
+    reason: req.nephio.org/v1alpha1.Interface.n6
+    status: "False"
+    type: ipam.resource.nephio.org/v1alpha1.IPClaim.upf-sdcore-n6-ipv4
+  - message: create initial resource
+    reason: req.nephio.org/v1alpha1.Interface.n6
+    status: "False"
+    type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.upf-sdcore-n6
+  - message: create initial resource
+    reason: req.nephio.org/v1alpha1.Interface.n6
+    status: "False"
+    type: vlan.resource.nephio.org/v1alpha1.VLANClaim.upf-sdcore-n6
+  - message: create initial resource
+    reason: req.nephio.org/v1alpha1.DataNetwork.internet
+    status: "False"
+    type: ipam.resource.nephio.org/v1alpha1.IPClaim.upf-sdcore-internet-pool1
