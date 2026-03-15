@@ -12,3 +12,9 @@ spec:
     name: vpc-internet
   cniType: macvlan
   attachmentType: vlan
+status:
+  ipClaimStatus:
+  - prefix: 10.1.0.0/16
+    gateway: ""
+  vlanClaimStatus:
+    vlanID: 4

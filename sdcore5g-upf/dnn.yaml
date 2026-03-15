@@ -13,3 +13,8 @@ spec:
   pools:
   - name: pool1
     prefixLength: 24
+status:
+  pools:
+  - name: pool1
+    ipClaim:
+      prefix: 10.1.1.0/24
