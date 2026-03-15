@@ -1,0 +1,16 @@
+apiVersion: req.nephio.org/v1alpha1
+kind: Dependency
+metadata: # kpt-merge: /upf
+  name: upf
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    specializer.nephio.org/owner: workload.nephio.org/v1alpha1.NFDeployment.amf-example
+    specializer.nephio.org/namespace: sdcore5g-cp
+    internal.kpt.dev/upstream-identifier: 'req.nephio.org|Dependency|default|upf'
+spec:
+  packageName: sdcore5g-upf
+  injectors:
+  - apiVersion: workload.nephio.org/v1alpha1
+    kind: NFDeployment
+    spec:
+      provider: upf.sdcore5g.io
