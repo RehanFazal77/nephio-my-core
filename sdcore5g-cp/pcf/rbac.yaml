@@ -1,0 +1,58 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: # kpt-merge: /pcf
+  name: pcf
+  labels:
+    project: sdcore5g
+    nf: pcf
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|Role|default|pcf'
+  namespace: sdcore5g-cp
+rules:
+- apiGroups:
+  - ""
+  - extensions
+  - batch
+  - apps
+  verbs:
+  - get
+  - list
+  - patch
+  resources:
+  - statefulsets
+  - daemonsets
+  - jobs
+  - pods
+  - services
+  - endpoints
+  - configmaps
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: # kpt-merge: /pcf
+  name: pcf
+  labels:
+    project: sdcore5g
+    nf: pcf
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|RoleBinding|default|pcf'
+  namespace: sdcore5g-cp
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: pcf
+subjects:
+- kind: ServiceAccount
+  name: pcf
+  namespace: sdcore5g-cp
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata: # kpt-merge: sdcore5g-cp/pcf
+  name: pcf
+  namespace: sdcore5g-cp
+  labels:
+    project: sdcore5g
+    nf: pcf
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|ServiceAccount|sdcore5g-cp|pcf'

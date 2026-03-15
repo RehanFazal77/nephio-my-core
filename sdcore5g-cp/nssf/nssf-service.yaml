@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata: # kpt-merge: /nssf
+  name: nssf
+  labels:
+    app.kubernetes.io/version: "v3.1.1"
+    project: sdcore5g
+    nf: nssf
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|Service|default|nssf'
+  namespace: sdcore5g-cp
+spec:
+  type: ClusterIP
+  selector:
+    project: sdcore5g
+    nf: nssf
+  ports:
+  - name: sbi
+    port: 29531
+    protocol: TCP

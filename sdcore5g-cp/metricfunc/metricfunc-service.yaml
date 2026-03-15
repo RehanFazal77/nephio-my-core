@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata: # kpt-merge: /metricfunc
+  name: metricfunc
+  labels:
+    release: sdcore5g
+    app: metricfunc
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|Service|default|metricfunc'
+  namespace: sdcore5g-cp
+spec:
+  type: ClusterIP
+  selector:
+    release: sdcore5g
+    app: metricfunc
+  ports:
+  - name: prometheus-exporter
+    port: 9089
+    protocol: TCP
+  - name: api-endpoint
+    port: 9301
+    protocol: TCP

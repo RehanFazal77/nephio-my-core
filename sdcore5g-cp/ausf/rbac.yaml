@@ -1,0 +1,58 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: # kpt-merge: default/ausf
+  name: ausf
+  namespace: sdcore5g-cp
+  labels:
+    release: sdcore
+    app: ausf
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|Role|default|ausf'
+rules:
+- apiGroups:
+  - ""
+  - extensions
+  - batch
+  - apps
+  verbs:
+  - get
+  - list
+  - patch
+  resources:
+  - statefulsets
+  - daemonsets
+  - jobs
+  - pods
+  - services
+  - endpoints
+  - configmaps
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: # kpt-merge: default/ausf
+  name: ausf
+  namespace: sdcore5g-cp
+  labels:
+    release: sdcore
+    app: ausf
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|RoleBinding|default|ausf'
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ausf
+subjects:
+- kind: ServiceAccount
+  name: ausf
+  namespace: sdcore5g-cp
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata: # kpt-merge: sdcore5g-cp/ausf
+  name: ausf
+  namespace: sdcore5g-cp
+  labels:
+    release: sdcore
+    app: ausf
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|ServiceAccount|sdcore5g-cp|ausf'

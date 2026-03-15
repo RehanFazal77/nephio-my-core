@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata: # kpt-merge: /udm
+  name: udm
+  labels:
+    app.kubernetes.io/version: "v3.1.1"
+    project: sdcore5g
+    nf: udm
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|Service|default|udm'
+  namespace: sdcore5g-cp
+spec:
+  type: ClusterIP
+  selector:
+    project: sdcore5g
+    nf: udm
+  ports:
+  - name: sbi
+    port: 29503
+    protocol: TCP

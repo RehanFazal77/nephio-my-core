@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata: # kpt-merge: /nrf
+  name: nrf
+  labels:
+    app.kubernetes.io/version: "v3.1.1"
+    project: sdcore5g
+    nf: nrf
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|Service|default|nrf'
+  namespace: sdcore5g-cp
+spec:
+  type: ClusterIP
+  selector:
+    project: sdcore5g
+    nf: nrf
+  ports:
+  - name: sbi
+    port: 29510
+    protocol: TCP
