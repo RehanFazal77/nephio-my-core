@@ -1,0 +1,58 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: # kpt-merge: default/nssf
+  name: nssf
+  namespace: sdcore5g-cp
+  labels:
+    project: sdcore5g
+    nf: nssf
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|Role|default|nssf'
+rules:
+- apiGroups:
+  - ""
+  - extensions
+  - batch
+  - apps
+  verbs:
+  - get
+  - list
+  - patch
+  resources:
+  - statefulsets
+  - daemonsets
+  - jobs
+  - pods
+  - services
+  - endpoints
+  - configmaps
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: # kpt-merge: /nssf
+  name: nssf
+  labels:
+    project: sdcore5g
+    nf: nssf
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|RoleBinding|default|nssf'
+  namespace: sdcore5g-cp
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: nssf
+subjects:
+- kind: ServiceAccount
+  name: nssf
+  namespace: sdcore5g-cp
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata: # kpt-merge: /nssf
+  name: nssf
+  labels:
+    project: sdcore5g
+    nf: nssf
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|ServiceAccount|default|nssf'
+  namespace: sdcore5g-cp

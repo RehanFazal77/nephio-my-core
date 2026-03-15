@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata: # kpt-merge: /pcf
+  name: pcf
+  labels:
+    app.kubernetes.io/version: "v3.1.1"
+    project: sdcore5g
+    nf: pcf
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|Service|default|pcf'
+  namespace: sdcore5g-cp
+spec:
+  type: ClusterIP
+  selector:
+    project: sdcore5g
+    nf: pcf
+  ports:
+  - name: sbi
+    port: 29507
+    protocol: TCP

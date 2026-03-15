@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata: # kpt-merge: /webui
+  name: webui
+  labels:
+    app.kubernetes.io/version: "v3.1.1"
+    project: sdcore5g
+    nf: webui
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|Service|default|webui'
+  namespace: sdcore5g-cp
+spec:
+  type: ClusterIP
+  selector:
+    project: sdcore5g
+    nf: webui
+  ports:
+  - name: urlport-http
+    port: 5000
+    protocol: TCP
+  - name: grpc
+    port: 9876
+    protocol: TCP

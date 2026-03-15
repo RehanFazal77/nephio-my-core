@@ -1,0 +1,58 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: # kpt-merge: /udr
+  name: udr
+  labels:
+    project: sdcore5g
+    nf: udr
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|Role|default|udr'
+  namespace: sdcore5g-cp
+rules:
+- apiGroups:
+  - ""
+  - extensions
+  - batch
+  - apps
+  verbs:
+  - get
+  - list
+  - patch
+  resources:
+  - statefulsets
+  - daemonsets
+  - jobs
+  - pods
+  - services
+  - endpoints
+  - configmaps
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: # kpt-merge: /udr
+  name: udr
+  labels:
+    project: sdcore5g
+    nf: udr
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|RoleBinding|default|udr'
+  namespace: sdcore5g-cp
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: udr
+subjects:
+- kind: ServiceAccount
+  name: udr
+  namespace: sdcore5g-cp
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata: # kpt-merge: sdcore5g-cp/udr
+  name: udr
+  namespace: sdcore5g-cp
+  labels:
+    project: sdcore5g
+    nf: udr
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|ServiceAccount|sdcore5g-cp|udr'
