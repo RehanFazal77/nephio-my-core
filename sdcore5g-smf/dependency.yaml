@@ -14,3 +14,9 @@ spec:
     kind: NFDeployment
     spec:
       provider: upf.sdcore5g.io
+status:
+  injected:
+  - name: smf-sdcore-upf-sdcore
+    namespace: sdcore5g-cp
+    apiVersion: ref.nephio.org/v1alpha1
+    kind: Config

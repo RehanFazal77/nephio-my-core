@@ -10,4 +10,4 @@ metadata:
 spec:
   vlanIndex:
     name: sdcore
-status: {}
+status: {vlanID: 3}

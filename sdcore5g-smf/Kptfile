@@ -55,8 +55,8 @@ status:
     status: "True"
     type: req.nephio.org/v1alpha1.Interface.n11
     reason: workload.nephio.org/v1alpha1.NFDeployment.smf-sdcore
-  - message: create initial resource condition
-    status: "False"
+  - message: update done
+    status: "True"
     type: req.nephio.org/v1alpha1.Interface.n4
     reason: workload.nephio.org/v1alpha1.NFDeployment.smf-sdcore
   - message: update done
@@ -70,19 +70,23 @@ status:
     reason: workload.nephio.org/v1alpha1.NFDeployment.smf-sdcore
     status: "True"
     type: req.nephio.org/v1alpha1.Capacity.control-plane
-  - message: create initial resource condition
+  - message: update done
     reason: workload.nephio.org/v1alpha1.NFDeployment.smf-sdcore
-    status: "False"
+    status: "True"
     type: req.nephio.org/v1alpha1.Dependency.upf
-  - message: create initial resource
+  - message: update done
     reason: req.nephio.org/v1alpha1.Interface.n4
-    status: "False"
+    status: "True"
     type: ipam.resource.nephio.org/v1alpha1.IPClaim.smf-sdcore-n4-ipv4
-  - message: create initial resource
+  - message: update done
     reason: req.nephio.org/v1alpha1.Interface.n4
-    status: "False"
+    status: "True"
     type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.smf-sdcore-n4
-  - message: create initial resource
+  - message: update done
     reason: req.nephio.org/v1alpha1.Interface.n4
-    status: "False"
+    status: "True"
     type: vlan.resource.nephio.org/v1alpha1.VLANClaim.smf-sdcore-n4
+  - message: create initial resource
+    reason: req.nephio.org/v1alpha1.Dependency.upf
+    status: "True"
+    type: ref.nephio.org/v1alpha1.Config.smf-sdcore-upf-sdcore
