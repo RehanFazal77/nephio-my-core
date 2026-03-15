@@ -31,6 +31,15 @@ info:
   - security
 pipeline:
   mutators:
+  - name: PackageVariant.baseline-my-core..0
+    image: gcr.io/kpt-fn/apply-setters:v0.2
+    configMap:
+      cluster-name: sdcore
+      cluster-type: workload
+      namespace-prefix: ""
+      site-id: site-core-01
+      storage-class-name: local-path
+      workload-type: sdcore
   - image: gcr.io/kpt-fn/apply-setters:v0.2
     configMap:
       cluster-name: my-ran
