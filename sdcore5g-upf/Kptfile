@@ -74,7 +74,7 @@ status:
     reason: workload.nephio.org/v1alpha1.NFDeployment.upf-sdcore
     status: "True"
     type: req.nephio.org/v1alpha1.Capacity.dataplane
-  - message: create initial resource
+  - message: 'rpc error: code = Unknown desc = dynamic claim: no available routes based on the selector labels map[nephio.org/address-family:ipv4 nephio.org/cluster-name:sdcore nephio.org/network-name:n3]'
     reason: req.nephio.org/v1alpha1.Interface.n3
     status: "False"
     type: ipam.resource.nephio.org/v1alpha1.IPClaim.upf-sdcore-n3-ipv4
@@ -82,11 +82,11 @@ status:
     reason: req.nephio.org/v1alpha1.Interface.n3
     status: "False"
     type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.upf-sdcore-n3
-  - message: create initial resource
+  - message: update done
     reason: req.nephio.org/v1alpha1.Interface.n3
-    status: "False"
+    status: "True"
     type: vlan.resource.nephio.org/v1alpha1.VLANClaim.upf-sdcore-n3
-  - message: create initial resource
+  - message: 'rpc error: code = Unknown desc = dynamic claim: no available routes based on the selector labels map[nephio.org/address-family:ipv4 nephio.org/cluster-name:sdcore]'
     reason: req.nephio.org/v1alpha1.Interface.n4
     status: "False"
     type: ipam.resource.nephio.org/v1alpha1.IPClaim.upf-sdcore-n4-ipv4
@@ -94,11 +94,11 @@ status:
     reason: req.nephio.org/v1alpha1.Interface.n4
     status: "False"
     type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.upf-sdcore-n4
-  - message: create initial resource
+  - message: update done
     reason: req.nephio.org/v1alpha1.Interface.n4
-    status: "False"
+    status: "True"
     type: vlan.resource.nephio.org/v1alpha1.VLANClaim.upf-sdcore-n4
-  - message: create initial resource
+  - message: 'rpc error: code = Unknown desc = dynamic claim: no available routes based on the selector labels map[nephio.org/address-family:ipv4 nephio.org/cluster-name:sdcore]'
     reason: req.nephio.org/v1alpha1.Interface.n6
     status: "False"
     type: ipam.resource.nephio.org/v1alpha1.IPClaim.upf-sdcore-n6-ipv4
@@ -106,11 +106,11 @@ status:
     reason: req.nephio.org/v1alpha1.Interface.n6
     status: "False"
     type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.upf-sdcore-n6
-  - message: create initial resource
+  - message: update done
     reason: req.nephio.org/v1alpha1.Interface.n6
-    status: "False"
+    status: "True"
     type: vlan.resource.nephio.org/v1alpha1.VLANClaim.upf-sdcore-n6
-  - message: create initial resource
+  - message: 'rpc error: code = Unknown desc = dynamic claim: no available routes based on the selector labels map[nephio.org/address-family:ipv4 nephio.org/cluster-name:sdcore]'
     reason: req.nephio.org/v1alpha1.DataNetwork.internet
     status: "False"
     type: ipam.resource.nephio.org/v1alpha1.IPClaim.upf-sdcore-internet-pool1
