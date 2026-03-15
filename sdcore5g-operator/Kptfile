@@ -1,0 +1,22 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata: # kpt-merge: /sdcore5g-operator
+  name: sdcore5g-operator
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: 'kpt.dev|Kptfile|default|sdcore5g-operator'
+upstream:
+  type: git
+  git:
+    repo: https://github.com/RehanFazal77/nephio-blueprints-approachB.git
+    directory: workloads/sd-core/sdcore5g-operator
+    ref: main
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/RehanFazal77/nephio-blueprints-approachB.git
+    directory: workloads/sd-core/sdcore5g-operator
+    ref: main
+    commit: 328a189031cbc5a1e0581a108b75cce38dbf0b18
+info:
+  description: sdcore5g operator package
