@@ -1,0 +1,115 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata: # kpt-merge: /sdcore5g-upf
+  name: sdcore5g-upf
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: 'kpt.dev|Kptfile|default|sdcore5g-upf'
+upstream:
+  type: git
+  git:
+    repo: https://github.com/RehanFazal77/nephio-blueprints-approachB.git
+    directory: workloads/sd-core/pkg-example-upf-bp
+    ref: main
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/RehanFazal77/nephio-blueprints-approachB.git
+    directory: workloads/sd-core/pkg-example-upf-bp
+    ref: main
+    commit: 328a189031cbc5a1e0581a108b75cce38dbf0b18
+info:
+  description: example upf blueprint package
+  readinessGates:
+  - conditionType: config.injection.WorkloadCluster.workload-cluster
+  - conditionType: nephio.org.Specializer.specialize
+pipeline:
+  mutators:
+  - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+    configPath: apply-replacements-owner.yaml
+  - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+    configPath: apply-replacements-namespace.yaml
+  - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+    configPath: package-context.yaml
+  - image: docker.io/nephio/nfdeploy-fn:v4.0.0
+  - image: docker.io/nephio/interface-fn:v4.0.0
+  - image: docker.io/nephio/dnn-fn:v4.0.0
+  - image: docker.io/nephio/nad-fn:v4.0.0
+  - image: docker.io/nephio/dnn-fn:v4.0.0
+  - image: docker.io/nephio/interface-fn:v4.0.0
+  - image: docker.io/nephio/nfdeploy-fn:v4.0.0
+status:
+  conditions:
+  - type: config.injection.WorkloadCluster.workload-cluster
+    status: "True"
+    message: injected resource "sdcore" from cluster
+    reason: ConfigInjected
+  - message: update done
+    reason: req.nephio.org/v1alpha1.DataNetwork.internet
+    status: "True"
+    type: ipam.resource.nephio.org/v1alpha1.IPClaim.upf-sdcore-internet-pool1
+  - message: update done
+    reason: req.nephio.org/v1alpha1.Interface.n3
+    status: "True"
+    type: ipam.resource.nephio.org/v1alpha1.IPClaim.upf-sdcore-n3-ipv4
+  - message: update done
+    reason: req.nephio.org/v1alpha1.Interface.n4
+    status: "True"
+    type: ipam.resource.nephio.org/v1alpha1.IPClaim.upf-sdcore-n4-ipv4
+  - message: update done
+    reason: req.nephio.org/v1alpha1.Interface.n6
+    status: "True"
+    type: ipam.resource.nephio.org/v1alpha1.IPClaim.upf-sdcore-n6-ipv4
+  - message: update done
+    reason: req.nephio.org/v1alpha1.Interface.n3
+    status: "True"
+    type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.upf-sdcore-n3
+  - message: update done
+    reason: req.nephio.org/v1alpha1.Interface.n4
+    status: "True"
+    type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.upf-sdcore-n4
+  - message: update done
+    reason: req.nephio.org/v1alpha1.Interface.n6
+    status: "True"
+    type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.upf-sdcore-n6
+  - reason: Ready
+    status: "True"
+    type: nephio.org.Specializer.specialize
+  - message: child local resource -> done
+    reason: workload.nephio.org/v1alpha1.NFDeployment.upf-sdcore
+    status: "True"
+    type: req.nephio.org/v1alpha1.Capacity.dataplane
+  - message: update done
+    status: "True"
+    type: req.nephio.org/v1alpha1.DataNetwork.internet
+    reason: workload.nephio.org/v1alpha1.NFDeployment.upf-sdcore
+  - message: update done
+    status: "True"
+    type: req.nephio.org/v1alpha1.Interface.n3
+    reason: workload.nephio.org/v1alpha1.NFDeployment.upf-sdcore
+  - message: update done
+    status: "True"
+    type: req.nephio.org/v1alpha1.Interface.n4
+    reason: workload.nephio.org/v1alpha1.NFDeployment.upf-sdcore
+  - message: update done
+    status: "True"
+    type: req.nephio.org/v1alpha1.Interface.n6
+    reason: workload.nephio.org/v1alpha1.NFDeployment.upf-sdcore
+  - message: update done
+    status: "True"
+    type: req.nephio.org/v1alpha1.Interface.sbi
+  - message: update done
+    reason: req.nephio.org/v1alpha1.Interface.n3
+    status: "True"
+    type: vlan.resource.nephio.org/v1alpha1.VLANClaim.upf-sdcore-n3
+  - message: update done
+    reason: req.nephio.org/v1alpha1.Interface.n4
+    status: "True"
+    type: vlan.resource.nephio.org/v1alpha1.VLANClaim.upf-sdcore-n4
+  - message: update done
+    reason: req.nephio.org/v1alpha1.Interface.n6
+    status: "True"
+    type: vlan.resource.nephio.org/v1alpha1.VLANClaim.upf-sdcore-n6
+  - message: update done
+    status: "True"
+    type: workload.nephio.org/v1alpha1.NFDeployment.upf-sdcore
