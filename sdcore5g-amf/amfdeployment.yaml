@@ -7,3 +7,21 @@ metadata: # kpt-merge: amf-example/amf-example
     internal.kpt.dev/upstream-identifier: 'workload.nephio.org|NFDeployment|amf-example|amf-example'
 spec:
   provider: amf.sdcore5g.io
+  interfaces:
+  - name: n2
+    ipv4:
+      address: 172.2.1.0/16
+      gateway: ""
+    vlanID: 2
+  networkInstances:
+  - name: vpc-ran
+    interfaces:
+    - n2
+  parametersRefs:
+  - name: amf-sdcore-upf-sdcore
+    apiVersion: ref.nephio.org/v1alpha1
+    kind: Config
+  capacity:
+    maxDownlinkThroughput: "0"
+    maxSubscribers: 10000
+    maxUplinkThroughput: "0"

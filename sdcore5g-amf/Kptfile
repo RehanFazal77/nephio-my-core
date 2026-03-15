@@ -44,42 +44,45 @@ status:
     status: "True"
     message: injected resource "sdcore" from cluster
     reason: ConfigInjected
-  - message: not ready
-    reason: Specialize
-    status: "False"
+  - reason: Ready
+    status: "True"
     type: nephio.org.Specializer.specialize
   - message: update done
     status: "True"
     type: req.nephio.org/v1alpha1.DataNetwork.internet
     reason: workload.nephio.org/v1alpha1.NFDeployment.amf-sdcore
-  - message: create initial resource condition
-    status: "False"
+  - message: update done
+    status: "True"
     type: req.nephio.org/v1alpha1.Interface.n2
     reason: workload.nephio.org/v1alpha1.NFDeployment.amf-sdcore
   - message: update done
     status: "True"
     type: req.nephio.org/v1alpha1.Interface.sbi
     reason: workload.nephio.org/v1alpha1.NFDeployment.amf-sdcore
-  - message: update for condition
-    status: "False"
+  - message: update done
+    status: "True"
     type: workload.nephio.org/v1alpha1.NFDeployment.amf-sdcore
   - message: child local resource -> done
     reason: workload.nephio.org/v1alpha1.NFDeployment.amf-sdcore
     status: "True"
     type: req.nephio.org/v1alpha1.Capacity.control-plane
-  - message: create initial resource condition
+  - message: update done
     reason: workload.nephio.org/v1alpha1.NFDeployment.amf-sdcore
-    status: "False"
+    status: "True"
     type: req.nephio.org/v1alpha1.Dependency.upf
-  - message: create initial resource
+  - message: update done
     reason: req.nephio.org/v1alpha1.Interface.n2
-    status: "False"
+    status: "True"
     type: ipam.resource.nephio.org/v1alpha1.IPClaim.amf-sdcore-n2-ipv4
-  - message: create initial resource
+  - message: update done
     reason: req.nephio.org/v1alpha1.Interface.n2
-    status: "False"
+    status: "True"
     type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.amf-sdcore-n2
-  - message: create initial resource
+  - message: update done
     reason: req.nephio.org/v1alpha1.Interface.n2
-    status: "False"
+    status: "True"
     type: vlan.resource.nephio.org/v1alpha1.VLANClaim.amf-sdcore-n2
+  - message: create initial resource
+    reason: req.nephio.org/v1alpha1.Dependency.upf
+    status: "True"
+    type: ref.nephio.org/v1alpha1.Config.amf-sdcore-upf-sdcore
