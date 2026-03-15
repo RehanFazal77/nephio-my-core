@@ -7,3 +7,22 @@ metadata: # kpt-merge: smf-example/smf-example
     internal.kpt.dev/upstream-identifier: 'workload.nephio.org|NFDeployment|smf-example|smf-example'
 spec:
   provider: smf.sdcore5g.io
+  interfaces:
+  - name: n4
+    ipv4:
+      address: 172.1.1.1/16
+      gateway: ""
+    vlanID: 3
+  networkInstances:
+  - name: vpc-internal
+    interfaces:
+    - n4
+  parametersRefs:
+  - name: smf-sdcore-upf-sdcore
+    apiVersion: ref.nephio.org/v1alpha1
+    kind: Config
+  capacity:
+    maxDownlinkThroughput: "0"
+    maxNFConnections: 5
+    maxSessions: 500
+    maxUplinkThroughput: "0"

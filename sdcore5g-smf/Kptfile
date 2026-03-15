@@ -43,14 +43,33 @@ status:
     status: "True"
     message: injected resource "sdcore" from cluster
     reason: ConfigInjected
-  - message: not ready
-    reason: Specialize
-    status: "False"
+  - message: update done
+    reason: req.nephio.org/v1alpha1.Interface.n4
+    status: "True"
+    type: ipam.resource.nephio.org/v1alpha1.IPClaim.smf-sdcore-n4-ipv4
+  - message: update done
+    reason: req.nephio.org/v1alpha1.Interface.n4
+    status: "True"
+    type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.smf-sdcore-n4
+  - reason: Ready
+    status: "True"
     type: nephio.org.Specializer.specialize
+  - message: create initial resource
+    reason: req.nephio.org/v1alpha1.Dependency.upf
+    status: "True"
+    type: ref.nephio.org/v1alpha1.Config.smf-sdcore-upf-sdcore
+  - message: child local resource -> done
+    reason: workload.nephio.org/v1alpha1.NFDeployment.smf-sdcore
+    status: "True"
+    type: req.nephio.org/v1alpha1.Capacity.control-plane
   - message: update done
     status: "True"
     type: req.nephio.org/v1alpha1.DataNetwork.internet
     reason: workload.nephio.org/v1alpha1.NFDeployment.smf-sdcore
+  - message: update done
+    reason: workload.nephio.org/v1alpha1.NFDeployment.smf-sdcore
+    status: "True"
+    type: req.nephio.org/v1alpha1.Dependency.upf
   - message: update done
     status: "True"
     type: req.nephio.org/v1alpha1.Interface.n11
@@ -63,30 +82,10 @@ status:
     status: "True"
     type: req.nephio.org/v1alpha1.Interface.sbi
     reason: workload.nephio.org/v1alpha1.NFDeployment.smf-sdcore
-  - message: update for condition
-    status: "False"
-    type: workload.nephio.org/v1alpha1.NFDeployment.smf-sdcore
-  - message: child local resource -> done
-    reason: workload.nephio.org/v1alpha1.NFDeployment.smf-sdcore
-    status: "True"
-    type: req.nephio.org/v1alpha1.Capacity.control-plane
-  - message: update done
-    reason: workload.nephio.org/v1alpha1.NFDeployment.smf-sdcore
-    status: "True"
-    type: req.nephio.org/v1alpha1.Dependency.upf
-  - message: update done
-    reason: req.nephio.org/v1alpha1.Interface.n4
-    status: "True"
-    type: ipam.resource.nephio.org/v1alpha1.IPClaim.smf-sdcore-n4-ipv4
-  - message: update done
-    reason: req.nephio.org/v1alpha1.Interface.n4
-    status: "True"
-    type: k8s.cni.cncf.io/v1.NetworkAttachmentDefinition.smf-sdcore-n4
   - message: update done
     reason: req.nephio.org/v1alpha1.Interface.n4
     status: "True"
     type: vlan.resource.nephio.org/v1alpha1.VLANClaim.smf-sdcore-n4
-  - message: create initial resource
-    reason: req.nephio.org/v1alpha1.Dependency.upf
+  - message: update done
     status: "True"
-    type: ref.nephio.org/v1alpha1.Config.smf-sdcore-upf-sdcore
+    type: workload.nephio.org/v1alpha1.NFDeployment.smf-sdcore
