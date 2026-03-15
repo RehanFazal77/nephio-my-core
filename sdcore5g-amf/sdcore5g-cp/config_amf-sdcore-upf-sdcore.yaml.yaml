@@ -1,0 +1,54 @@
+apiVersion: ref.nephio.org/v1alpha1
+kind: Config
+metadata:
+  name: amf-sdcore-upf-sdcore
+  namespace: sdcore5g-cp
+  annotations:
+    specializer.nephio.org/owner: req.nephio.org/v1alpha1.Dependency.upf
+spec:
+  config:
+    apiVersion: workload.nephio.org/v1alpha1
+    kind: NFDeployment
+    metadata:
+      name: upf-sdcore
+      namespace: sdcore5g-upf
+      annotations:
+        config.kubernetes.io/index: "0"
+        internal.config.kubernetes.io/index: "0"
+        internal.config.kubernetes.io/path: upfdeployment.yaml
+        internal.kpt.dev/upstream-identifier: workload.nephio.org|NFDeployment|upf-example|upf-example
+    spec:
+      capacity:
+        maxDownlinkThroughput: 5G
+        maxUplinkThroughput: 5G
+      interfaces:
+      - name: n3
+        ipv4:
+          address: 172.3.0.0/16
+          gateway: ""
+        vlanID: 2
+      - name: n4
+        ipv4:
+          address: 172.1.1.0/16
+          gateway: ""
+        vlanID: 3
+      - name: n6
+        ipv4:
+          address: 10.1.0.0/16
+          gateway: ""
+        vlanID: 4
+      networkInstances:
+      - name: vpc-internal
+        interfaces:
+        - n4
+      - name: vpc-internet
+        dataNetworks:
+        - name: internet
+          pool:
+          - prefix: 10.1.1.0/24
+        interfaces:
+        - n6
+      - name: vpc-ran
+        interfaces:
+        - n3
+      provider: upf.sdcore5g.io
