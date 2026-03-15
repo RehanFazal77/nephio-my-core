@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata: # kpt-merge: /sdcore5g-operator-role-binding
+  name: sdcore5g-operator-role-binding
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|ClusterRoleBinding|default|sdcore5g-operator-role-binding'
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: sdcore5g-operator-role
+subjects:
+- kind: ServiceAccount
+  name: sdcore5g-operator
+  namespace: sdcore5g
